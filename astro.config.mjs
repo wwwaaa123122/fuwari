@@ -28,7 +28,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://91sssvip.top",
+  site: "https://blog.mcxclr.top/",
   base: "/",
   trailingSlash: "always",
 
