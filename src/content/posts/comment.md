@@ -13,7 +13,7 @@ lang: 'zh_CN'
 Giscus就是一个非常合适的平台  
 # 配置Giscus
 首先去github创建一个存储库，**一定要是公开库**
-然后在仓库设置中**启用**`Discussion`功能
+然后在仓库设置中**启用**`Discussion`功能  
 前往https://giscus.app/zh-CN
 在`仓库`一栏中点击第二步的蓝字安装giscus，最后填写自己的用户名及刚刚创建的仓库名称  
 ### 映射
