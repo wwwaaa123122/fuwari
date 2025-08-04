@@ -19,7 +19,6 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
-import Giscus from '../components/Giscus.astro';
 
 interface Props {
 	title?: string;
@@ -154,8 +153,6 @@ const bannerOffset =
 	>
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
-		<hr class="my-6" />
-<Giscus />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
