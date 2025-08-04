@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: true,
-		src: "https://fuwari.cn-nb1.rains3.com/zeseshuxia.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "https://fpic.mcxclr.top", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: false, // Display the credit text of the banner image
