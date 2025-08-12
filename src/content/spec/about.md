@@ -25,6 +25,8 @@
     <div id="countdown" class="big-font"></div>
 
     <script data-pjax defer src='/js/clock.js'></script>
-    <div class="pjax-reload"></div> 
+
+    <div class="pjax-reload"></div>
+
 </body>
 
