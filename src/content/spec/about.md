@@ -13,18 +13,32 @@
 
 [telegram](https://t.me/wwwaaa123122)
 
-<style>
-.big-font {
-    font-size: 50px;  /* 字体大小保持原样 */
-    font-weight: bold;
-}
-</style>
+<h2>五年之约倒计时</h2>
+<div id="five-year-countdown" style="font-size:1.5em;font-weight:bold;color:#ff6600;"></div>
 
-<body>
-    <!-- 倒计时容器 -->
-    <div id="countdown" class="big-font"></div>
+<script>
+(function() {
+  const endDate = new Date("2030-07-20T00:00:00").getTime();
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDate - now;
 
-    <!-- 修正类名前多余的点号 -->
-    <script data-pjax defer src='/js/clock.js'></script>
-    <div class="pjax-reload"></div>  <!-- 修正后的类名 -->
-</body>
+    if (distance <= 0) {
+      document.getElementById("five-year-countdown").innerText = "五年之约已结束！";
+      clearInterval(timer);
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("five-year-countdown").innerText =
+      `${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+  }
+
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+})();
+</script>
