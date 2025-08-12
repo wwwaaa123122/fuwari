@@ -13,3 +13,18 @@
 
 [telegram](https://t.me/wwwaaa123122)
 
+<style>
+.big-font {
+    font-size: 50px;  /* 字体大小保持原样 */
+    font-weight: bold;
+}
+</style>
+
+<body>
+    <!-- 倒计时容器 -->
+    <div id="countdown" class="big-font"></div>
+
+    <!-- 修正类名前多余的点号 -->
+    <script data-pjax defer src='/js/clock.js'></script>
+    <div class="pjax-reload"></div>  <!-- 修正后的类名 -->
+</body>
