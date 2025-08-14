@@ -24,7 +24,7 @@
     const distance = endDate - now;
 
     if (distance <= 0) {
-      document.getElementById("five-year-countdown").innerText = "五年之约已结束！";
+      document.getElementById("five-year-countdown").innerText = "成年了！🎉🎉🎉";
       clearInterval(timer);
       return;
     }
