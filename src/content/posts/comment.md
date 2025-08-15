@@ -2,7 +2,7 @@
 title: fuwari接入评论功能
 published: 2025-08-04
 description: '让你的fuwari接入评论，并让它在文章末显示出'
-image: 'https://fuwari.cn-nb1.rains3.com/comment.jpg'
+image: '../images/comment.jpg'
 tags: [fuwari]
 category: 'tech'
 draft: false 

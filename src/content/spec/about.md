@@ -3,9 +3,9 @@
 
 ## 联系我？
 
-[微信](https://fuwari.cn-nb1.rains3.com/qrwechat.png)
+![微信](../images/qrwechat.png)
 
-[QQ](https://fuwari.cn-nb1.rains3.com/qrqq.png)
+![QQ](../images/QQ.png)
 
 邮箱：i@mcxclr.top
 
