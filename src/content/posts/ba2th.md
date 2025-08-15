@@ -9,7 +9,7 @@ draft: false
 lang: 'zh_CN'
 ---
 快哉快哉
-![亚子](https://fuwari.cn-nb1.rains3.com/yazi.jpg)  
-![日奈](https://fuwari.cn-nb1.rains3.com/rinai.jpg)  
+![亚子](../images/yazi.jpg)  
+![日奈](../images/rinai.jpg)  
 还有我的支付宝皮肤😋  
-![支付宝](https://fuwari.cn-nb1.rains3.com/ba-alipay.jpg)
+![支付宝](../images/ba-alipay.jpg)
