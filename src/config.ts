@@ -18,7 +18,7 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: true,
-		src: "https://fpic.mcxclr.top", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+    		src: "https://fpic.mcxclr.top", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: false, // Display the credit text of the banner image
@@ -50,6 +50,11 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://github.com/wwwaaa123122", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
+		{
+		    name: "友链",
+		    url: "/friends",
+		    external: false,
+		}
 	],
 };
 
