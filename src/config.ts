@@ -54,7 +54,7 @@ export const navBarConfig: NavBarConfig = {
 		    name: "友链",
 		    url: "/friends",
 		    external: false,
-		}
+		},
 	],
 };
 
