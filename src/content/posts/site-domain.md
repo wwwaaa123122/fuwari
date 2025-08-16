@@ -1,6 +1,6 @@
 ---
 title: 关于本站的一些域名
-published: 2025-08-08
+published: 2099-12-31
 description: '此站点可访问的域名'
 image: ''
 pinned: true
