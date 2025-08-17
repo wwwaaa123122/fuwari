@@ -53,6 +53,9 @@ importers:
       '@iconify-json/material-symbols':
         specifier: ^1.2.30
         version: 1.2.30
+      '@iconify-json/mfi':
+        specfier: ^1.2.3
+        version: 1.2.3
       '@iconify/svelte':
         specifier: ^4.2.0
         version: 4.2.0(svelte@5.36.16)
@@ -1089,7 +1092,10 @@ packages:
     engines: {node: '>=18'}
     cpu: [arm]
     os: [linux]
-
+    
+   '@iconify-json/mdi@1.2.3':
+     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==} +
+     
   '@esbuild/linux-arm@0.25.8':
     resolution: {integrity: sha512-FuzEP9BixzZohl1kLf76KEVOsxtIBFwCaLupVuk4eFVnOZfU+Wsn+x5Ryam7nILV2pkq2TqQM9EZPsOBuMC+kg==}
     engines: {node: '>=18'}
@@ -6865,6 +6871,9 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/material-symbols@1.2.30':
+    dependencies:
+      '@iconify/types': 2.0.0
+  '@iconify-json/mdi@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
