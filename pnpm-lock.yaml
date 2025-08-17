@@ -53,7 +53,7 @@ importers:
       '@iconify-json/material-symbols':
         specifier: ^1.2.30
         version: 1.2.30
-      '@iconify-json/mfi':
+      '@iconify-json/mdi':
         specfier: ^1.2.3
         version: 1.2.3
       '@iconify/svelte':
