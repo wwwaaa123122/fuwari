@@ -1,5 +1,17 @@
-const friendsPost = await getEntry('spec', 'friends')
-const { Content } = await friendsPost.render()
+---
+
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro"
+const aboutPost = await getEntry("spec", "friends");
+
+if (!aboutPost) {
+	throw new Error("About page content not found");
+}
+
+const { Content } = await render(friendsPost);
 const items = [
   {
     title: 'Astro',
@@ -16,7 +28,6 @@ const items = [
     tags: ['博客'],
   },
 ]
-const shuffledItems = items.sort(() => Math.random() - 0.5)
 ---
 <MainGridLayout title={i18n(I18nKey.friends)} description={i18n(I18nKey.friends)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
