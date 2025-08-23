@@ -8,7 +8,7 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "星辰旅人的blog",
+	title: "Starlr的blog",
     subtitle: "爱你所爱",
 	description: "分享一些技术，部署教程，作者为星辰旅人",
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th', 'vi'
