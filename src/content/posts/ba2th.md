@@ -11,5 +11,6 @@ lang: 'zh_CN'
 快哉快哉
 ![亚子](../images/yazi.jpg)  
 ![日奈](../images/rinai.jpg)  
-还有我的支付宝皮肤😋  
-![支付宝](../images/ba-alipay.jpg)
+还有我的支付宝和QQ主题😋  
+![支付宝](../images/ba-alipay.jpg)  
+![QQ](../images/ba-qq.jpg)

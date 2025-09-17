@@ -3,7 +3,7 @@
 
 ## 联系我？
 
-![微信](../images/qrwechat.png)
+![微信](../images/qiwei.jpg)
 
 ![QQ](../images/QQ.png)
 

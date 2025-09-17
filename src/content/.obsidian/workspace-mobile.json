@@ -1,0 +1,171 @@
+{
+  "main": {
+    "id": "6e0194a051e8e198",
+    "type": "split",
+    "children": [
+      {
+        "id": "abbec6d16b7a6cc0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3cb1c53c873cc7cd",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "97eaecbcb218f83e",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "39dc9ca38f5d836f",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "文件列表"
+        }
+      },
+      {
+        "id": "d47517d1fdba25e7",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "tag:blue archive",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "搜索"
+        }
+      },
+      {
+        "id": "439cd0604bba1f83",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "a60b509bec17e2eb",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 1
+  },
+  "right": {
+    "id": "c29d28523b289ea0",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "145e2cdd34caff77",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "spec/about.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "735ebcf43eb72394",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "spec/about.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "3f72451525723a04",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "spec/about.md",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false
+    }
+  },
+  "active": "3cb1c53c873cc7cd",
+  "lastOpenFiles": [
+    "posts/ba2th.md",
+    "images/ba-qq.jpg",
+    "posts/Untitled.md",
+    "posts/site-domain.md",
+    "posts/edgeone-worker.md",
+    "images/QQ.png",
+    "未命名",
+    "images/qiwei.jpg",
+    "images/comment.jpg",
+    "images/ba3cai.jpg",
+    "images/ba-alipay.jpg",
+    "images/aluona.jpg",
+    "spec/friends.md",
+    "spec/about.md",
+    "images/qrwechat.png"
+  ]
+}
