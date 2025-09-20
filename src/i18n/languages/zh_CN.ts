@@ -36,4 +36,11 @@ export const zh_CN: Translation = {
 	[Key.publishedAt]: "发布于",
 	[Key.license]: "许可协议",
 	[Key.friends]: "友链",
+
+	// 404 page
+	[Key.notFound]: "页面未找到",
+	[Key.notFoundTitle]: "哎呀！页面走丢了",
+	[Key.notFoundMessage]: "您访问的页面不存在，可能已被删除或链接有误。",
+	[Key.backToHome]: "返回首页",
+	[Key.viewArchive]: "查看归档",
 };
