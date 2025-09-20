@@ -32,6 +32,13 @@ export default defineConfig({
   base: "/",
   trailingSlash: "always",
 
+  redirects: {
+    "/v6": {
+        destination: "https://f.1.5.0.9.1.0.0.0.7.4.0.1.0.0.2.ip6.arpa/",
+        status: 302,
+    },
+  },
+
   integrations: [
       tailwind({
           nesting: true,
@@ -50,6 +57,7 @@ export default defineConfig({
           updateBodyClass: false,
           globalInstance: true,
       }),
+
       icon({
           include: {
               mdi: ["*"],

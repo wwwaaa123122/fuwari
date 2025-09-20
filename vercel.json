@@ -1,1 +1,10 @@
-{}
+{
+  "redirects": [
+
+    {
+      "source": "/yyb",
+      "destination": "https://f.1.5.0.9.1.0.0.0.7.4.0.1.0.0.2.ip6.arpa/",
+      "permanent": false
+    }
+  ]
+}
