@@ -37,6 +37,10 @@ export default defineConfig({
         destination: "https://f.1.5.0.9.1.0.0.0.7.4.0.1.0.0.2.ip6.arpa/",
         status: 302,
     },
+        "/gh": {
+        destination: "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+        status: 302,
+    },
   },
 
   integrations: [

@@ -5,6 +5,11 @@
       "source": "/v6",
       "destination": "https://f.1.5.0.9.1.0.0.0.7.4.0.1.0.0.2.ip6.arpa/",
       "permanent": false
+    },
+    {
+      "source": "/gh",
+      "destination": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+      "permanent": false
     }
   ]
 }
