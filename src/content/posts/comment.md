@@ -25,7 +25,7 @@ Giscus就是一个非常合适的平台
 最后将给出的JS复制  
 # 配置fuwari
 在`src/pages/posts/`目录下找到`[...slug].astro`，在它的**135行**插入
-```
+```astro
 <div id="giscus-comments" style="margin-top: 3rem;">
   你的JS
 </div>
