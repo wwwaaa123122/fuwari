@@ -1,0 +1,29 @@
+diff --git a/node_modules/astro/dist/assets/utils/transformToPath.js b/node_modules/astro/dist/assets/utils/transformToPath.js
+index cca8548..8b0a3cf 100644
+--- a/node_modules/astro/dist/assets/utils/transformToPath.js
++++ b/node_modules/astro/dist/assets/utils/transformToPath.js
+@@ -13,7 +13,9 @@ function propsToFilename(filePath, transform, hash) {
+   }
+   const prefixDirname = isESMImportedImage(transform.src) ? dirname(filePath) : "";
+   let outputExt = transform.format ? `.${transform.format}` : ext;
+-  return decodeURIComponent(`${prefixDirname}/${filename}_${hash}${outputExt}`);
++
++  // Force disable image optimization - return original path without hash and format conversion
++  return decodeURIComponent(`${prefixDirname}/${filename}${ext}`);
+ }
+ function hashTransform(transform, imageService, propertiesToHash) {
+   const hashFields = propertiesToHash.reduce(
+diff --git a/node_modules/astro/dist/core/build/generate.js b/node_modules/astro/dist/core/build/generate.js
+index 3144f4c..0ba275b 100644
+--- a/node_modules/astro/dist/core/build/generate.js
++++ b/node_modules/astro/dist/core/build/generate.js
+@@ -91,7 +91,8 @@ ${bgGreen(black(` ${verb} static routes `))}`);
+ `)
+   );
+   const staticImageList = getStaticImageList();
+-  if (staticImageList.size) {
++  // Force disable image optimization - hardcoded
++  if (false) {
+     logger.info("SKIP_FORMAT", `${bgGreen(black(` generating optimized images `))}`);
+     const totalCount = Array.from(staticImageList.values()).map((x) => x.transforms.size).reduce((a, b) => a + b, 0);
+     const cpuCount = os.cpus().length;
