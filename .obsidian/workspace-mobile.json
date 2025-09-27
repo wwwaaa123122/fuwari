@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/posts/fuwari-404.md",
+                "file": "src/content/posts/fuwari-rss.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "fuwari-404"
+              "title": "fuwari-rss"
             }
           }
         ]
@@ -156,6 +156,8 @@
   },
   "active": "766efd48b73ae8b3",
   "lastOpenFiles": [
+    "src/content/images/fuwari-rss-fix.jpg",
+    "src/content/posts/fuwari-404.md",
     "src/content/images/2x-404.jpg"
   ]
 }
