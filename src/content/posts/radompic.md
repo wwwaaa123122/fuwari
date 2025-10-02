@@ -9,7 +9,7 @@ draft: false
 lang: 'zh_CN'
 ---
 GitHub仓库：  
-::github{repo="XCTraveller/randompictures"}  
+::github{repo="wwwaaa123122/randompictures"}  
 使用JavaScript随机请求public文件夹中的图片，支持cloudflare worker及vercel部署，规避使用r2被cloudflare反薅  
-public文件夹中rename.py可以批量重命名  
+public文件夹中tool.py可以批量重命名并转换为webp格式，原图放入上级目录的origin中  
 [演示站](https://pic.mcxclr.top)
