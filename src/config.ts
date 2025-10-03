@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
 	title: "Starlr blog",
     subtitle: "爱你所爱",
 	description: "分享一些技术，部署教程，作者为星辰旅人",
-	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th', 'vi'
+	lang: "zh_CN", 'en', // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th', 'vi'
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
