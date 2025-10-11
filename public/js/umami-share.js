@@ -24,31 +24,6 @@
   }
 
   /**
-   * 构建统计 API URL（v3 版本）
-   * @param {string} baseUrl 
-   * @param {string} websiteId 
-   * @param {number} currentTimestamp 
-   * @param {string} timezone 
-   * @param {string} path 
-   * @returns {string}
-   */
-  global.buildUmamiStatsUrl = function(baseUrl, websiteId, currentTimestamp, timezone, path = '') {
-    const params = new URLSearchParams({
-      startAt: '0',
-      endAt: currentTimestamp.toString(),
-      unit: 'hour',
-      timezone: encodeURIComponent(timezone),
-      compare: 'false'
-    });
-    
-    if (path) {
-      params.set('path', `eq.${path}`);
-    }
-    
-    return `${baseUrl}/api/websites/${websiteId}/stats?${params.toString()}`;
-  };
-
-  /**
    * 获取 Umami 分享数据（websiteId、token）
    * 在缓存 TTL 内复用；并用全局 Promise 避免并发请求
    * @param {string} baseUrl
