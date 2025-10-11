@@ -45,7 +45,7 @@
       params.set('path', `eq.${path}`);
     }
     
-    return `${baseUrl}/analytics/us/api/websites/${websiteId}/stats?${params.toString()}`;
+    return `${baseUrl}/api/websites/${websiteId}/stats?${params.toString()}`;
   };
 
   /**
