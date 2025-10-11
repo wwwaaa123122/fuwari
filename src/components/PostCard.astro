@@ -139,7 +139,7 @@ const { remarkPluginFrontmatter } = await entry.render();
               startAt: '0',
               endAt: currentTimestamp.toString(),
               unit: 'hour',
-              timezone: encodeURIComponent(umamiConfig.timezone),
+              timezone: umamiConfig.timezone,
               path: `eq./posts/${slug}/`,
               compare: 'false'
             });

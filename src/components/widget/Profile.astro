@@ -70,7 +70,7 @@ const config = profileConfig;
               startAt: '0',
               endAt: currentTimestamp.toString(),
               unit: 'hour',
-              timezone: encodeURIComponent(umamiConfig.timezone),
+              timezone: umamiConfig.timezone,
               compare: 'false'
             });
             const statsUrl = `${umamiConfig.baseUrl}/analytics/${umamiConfig.region}/api/websites/${websiteId}/stats?${params.toString()}`;
