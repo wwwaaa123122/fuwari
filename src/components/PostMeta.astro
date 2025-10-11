@@ -82,6 +82,16 @@ const className = Astro.props.class;
             {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
         </div>
     </div>
+
+    <!-- page views -->
+    {slug && (
+        <div class="flex items-center">
+            <div class="meta-icon">
+                <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
+            </div>
+            <span id="page-views-display" class="text-50 text-sm font-medium">{statsConfig.loadingText}</span>
+        </div>
+    )}
 </div>
 
 {slug && (

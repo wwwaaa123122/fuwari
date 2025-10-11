@@ -81,6 +81,11 @@ const { remarkPluginFrontmatter } = await entry.render();
             </div>
         </div>
 
+        <!-- page views -->
+        <div class="text-sm text-black/30 dark:text-white/30 transition">
+            <span id={`page-views-${entry.slug}`}>{statsConfig.loadingText}</span>
+        </div>
+
     </div>
 
     {hasCover && <a href={url} aria-label={title}
