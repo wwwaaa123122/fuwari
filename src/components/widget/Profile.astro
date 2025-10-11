@@ -66,7 +66,7 @@ const config = profileConfig;
 
             // 获取总统计数据
             const currentTimestamp = Date.now();
-            const statsUrl = `${umamiConfig.baseUrl}/api/websites/${websiteId}/stats?startAt=0&endAt=${currentTimestamp}&unit=hour&timezone=${encodeURIComponent(umamiConfig.timezone)}&compare=false`;
+            const statsUrl = buildUmamiStatsUrl(umamiConfig.baseUrl, websiteId, currentTimestamp, umamiConfig.timezone);
 
             const statsResponse = await fetch(statsUrl, {
                 headers: {
@@ -83,8 +83,8 @@ const config = profileConfig;
             }
 
             const statsData = await statsResponse.json();
-            const totalViews = statsData.pageviews?.value || 0;
-            const totalVisits = statsData.visits?.value || 0;
+            const totalViews = statsData.pageviews || 0;
+            const totalVisits = statsData.visits || 0;
 
             const viewsElement = document.getElementById('total-views-display');
             const visitsElement = document.getElementById('total-visits-display');
