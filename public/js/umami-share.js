@@ -30,9 +30,9 @@
    * @param {string} shareId
    * @returns {Promise<{websiteId: string, token: string}>}
    */
-  global.getUmamiShareData = function (baseUrl, shareId) {
+  global.getUmamiShareData = function (baseUrl, shareId, region) {
     if (!global.__umamiSharePromise) {
-      global.__umamiSharePromise = fetchShareData(baseUrl, shareId).catch((err) => {
+      global.__umamiSharePromise = fetchShareData(baseUrl, shareId, region).catch((err) => {
         delete global.__umamiSharePromise;
         throw err;
       });

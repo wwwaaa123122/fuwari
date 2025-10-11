@@ -131,7 +131,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 
         try {
             // 调用全局工具获取 Umami 分享数据
-            const { websiteId, token } = await getUmamiShareData(umamiConfig.baseUrl, umamiConfig.shareId);
+            const { websiteId, token } = await getUmamiShareData(umamiConfig.baseUrl, umamiConfig.shareId, umamiConfig.region);
 
             // 第二步：获取统计数据
             const currentTimestamp = Date.now();
@@ -143,7 +143,7 @@ const { remarkPluginFrontmatter } = await entry.render();
               path: `eq./posts/${slug}/`,
               compare: 'false'
             });
-            const statsUrl = `${umamiConfig.baseUrl}/api/websites/${websiteId}/stats?${params.toString()}`;
+            const statsUrl = `${umamiConfig.baseUrl}/analytics/${umamiConfig.region}/api/websites/${websiteId}/stats?${params.toString()}`;
 
             const statsResponse = await fetch(statsUrl, {
                 headers: {

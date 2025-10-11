@@ -90,6 +90,7 @@ export const umamiConfig: UmamiConfig = {
         enable: true,
         baseUrl: "https://cloud.umami.is",
         shareId: "DMfBtCxd4Y1VOCMA",
+        region: "us", // 'us' for US, 'eu' for EU
         timezone: "Asia/Shanghai",
 };
 

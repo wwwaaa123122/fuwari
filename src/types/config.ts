@@ -72,6 +72,7 @@ export type UmamiConfig = {
         enable: boolean;
         baseUrl: string;
         shareId: string;
+        region: string; // 'us' for US, 'eu' for EU
         timezone: string;
 };
 
