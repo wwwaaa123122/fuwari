@@ -84,7 +84,7 @@ const config = profileConfig;
 
             const statsData = await statsResponse.json();
             const totalViews = statsData.pageviews || 0;
-            const totalVisits = statsData.visits || 0;
+            const totalVisits = statsData.visitors || 0;
 
             const viewsElement = document.getElementById('total-views-display');
             const visitsElement = document.getElementById('total-visits-display');
