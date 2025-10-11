@@ -135,7 +135,15 @@ const { remarkPluginFrontmatter } = await entry.render();
 
             // 第二步：获取统计数据
             const currentTimestamp = Date.now();
-            const statsUrl = buildUmamiStatsUrl(umamiConfig.baseUrl, websiteId, currentTimestamp, umamiConfig.timezone, `/posts/${slug}/`);
+            const params = new URLSearchParams({
+              startAt: '0',
+              endAt: currentTimestamp.toString(),
+              unit: 'hour',
+              timezone: encodeURIComponent(umamiConfig.timezone),
+              path: `eq./posts/${slug}/`,
+              compare: 'false'
+            });
+            const statsUrl = `${umamiConfig.baseUrl}/api/websites/${websiteId}/stats?${params.toString()}`;
 
             const statsResponse = await fetch(statsUrl, {
                 headers: {
