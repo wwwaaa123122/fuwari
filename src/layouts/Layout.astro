@@ -35,16 +35,17 @@ let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
 // so use Swup hooks instead to change the height immediately when a link is clicked
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 
-// === START OF MODIFICATION ===
+// === START OF FIX AND MODIFICATION ===
 // 定义您为首页设置的描述
 const homePageDescription =
 	"分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为starlr/星辰旅人";
 
-[span_0](start_span)// 仅当是首页时，用自定义描述覆盖传入的 description prop[span_0](end_span)
+// 仅当是首页时，用自定义描述覆盖传入的 description prop
 if (isHomePage) {
 	description = homePageDescription;
 }
-// === END OF MODIFICATION ===
+// === END OF FIX AND MODIFICATION ===
+
 
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
@@ -93,8 +94,7 @@ const bannerOffset =
 		<title>{pageTitle}</title>
 
 		<meta charset="UTF-8" />
-		<meta name="description" content={description ||
-pageTitle}>
+		<meta name="description" content={description || pageTitle}>
 		<meta name="author" content={profileConfig.name}>
 
 		<meta property="og:site_name" content={siteConfig.title}>
@@ -111,8 +111,7 @@ pageTitle}>
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:url" content={Astro.url}>
 		<meta name="twitter:title" content={pageTitle}>
-		<meta name="twitter:description" content={description ||
-pageTitle}>
+		<meta name="twitter:description" content={description || pageTitle}>
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -442,6 +441,13 @@ immediately when a link is clicked
 		if (heightExtend) {
 			heightExtend.classList.remove('hidden')
 		}
+
+            // Just make the transition looks better
+            const toc = document.getElementById('toc-wrapper');
+            if (toc) {
+                toc.classList.remove('toc-not-ready')
+            }
+        }, 200)
 	});
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {
 		setTimeout(() => {
