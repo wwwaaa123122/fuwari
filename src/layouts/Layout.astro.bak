@@ -14,8 +14,7 @@ import {
 	DEFAULT_THEME,
 	LIGHT_MODE,
 	PAGE_WIDTH,
-}
- from "../constants/constants";
+} from "../constants/constants";
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
@@ -36,8 +35,17 @@ let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
 // so use Swup hooks instead to change the height immediately when a link is clicked
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 
-// *** 注意: 移除上一次修改中添加的 homePageDescription 变量和 if (isHomePage) 逻辑 ***
-// 这样可以避免字符串注入到 <script is:inline> 时产生的 "Unterminated string literal" 错误。
+// === START OF FIX AND MODIFICATION ===
+// 定义您为首页设置的描述
+const homePageDescription =
+	"分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为starlr/星辰旅人";
+
+// 仅当是首页时，用自定义描述覆盖传入的 description prop
+if (isHomePage) {
+	description = homePageDescription;
+}
+// === END OF FIX AND MODIFICATION ===
+
 
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
@@ -75,14 +83,6 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
-
-// 定义首页描述，供 <meta> 标签直接使用
-const HOME_PAGE_DESCRIPTION = "分享网络技术、服务器部署、内网穿透、静态网站搭建、CDN优化、容器化部署等技术教程与实践经验的个人技术博客，专注于云原生、无服务器架构和前后端开发，作者为starlr/星辰旅人";
-
-// 确定最终描述
-const finalDescription = isHomePage
-	? HOME_PAGE_DESCRIPTION
-	: (description || pageTitle);
 ---
 
 <!DOCTYPE html>
@@ -94,13 +94,13 @@ const finalDescription = isHomePage
 		<title>{pageTitle}</title>
 
 		<meta charset="UTF-8" />
-		<meta name="description" content={finalDescription}>
+		<meta name="description" content={description || pageTitle}>
 		<meta name="author" content={profileConfig.name}>
 
 		<meta property="og:site_name" content={siteConfig.title}>
 		<meta property="og:url" content={Astro.url}>
 		<meta property="og:title" content={pageTitle}>
-		<meta property="og:description" content={finalDescription}>
+		<meta property="og:description" content={description || pageTitle}>
 		{setOGTypeArticle ?
 (
         <meta property="og:type" content="article" />
@@ -111,7 +111,8 @@ const finalDescription = isHomePage
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="twitter:url" content={Astro.url}>
 		<meta name="twitter:title" content={pageTitle}>
-		<meta name="twitter:description" content={finalDescription}>
+		<meta name="twitter:description" content={description || pageTitle}>
+
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<script src="/js/umami-share.js" defer></script>
