@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "766efd48b73ae8b3",
+            "id": "f44a0863b1d04d30",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/posts/radompic.md",
+                "file": "src/content/posts/how-use-bot.md",
                 "mode": "preview",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "radompic"
+              "title": "how-use-bot"
             }
           }
         ]
@@ -98,7 +98,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "src/content/posts/fuwari-404.md",
+            "file": "src/content/posts/how-use-bot.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -154,8 +154,13 @@
       "bases:创建新数据库": false
     }
   },
-  "active": "766efd48b73ae8b3",
+  "active": "f44a0863b1d04d30",
   "lastOpenFiles": [
+    "src/content/posts/ba2th.md",
+    "src/content/posts/how-use-bot.md",
+    "未命名.md",
+    "src/content/posts/radompic.md",
+    "未命名",
     "src/content/posts/fuwari-rss.md",
     "src/content/images/fuwari-rss-fix.jpg",
     "src/content/posts/fuwari-404.md",
