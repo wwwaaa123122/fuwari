@@ -41,6 +41,10 @@ export default defineConfig({
         destination: "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
         status: 302,
     },
+    "/bot": {
+        destination: "https://mcxclr.top/posts/how-use-bot",
+        status: 302,
+    }
   },
 
   integrations: [
