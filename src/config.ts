@@ -33,7 +33,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		 // Leave this array empty to use the default favicon
 	        {
-		   src: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3655437054&spec=5',    // Path of the favicon, relative to the /public directory
+		   src: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3385016019&spec=5',    // Path of the favicon, relative to the /public directory
 		   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 		   sizes: '128×128',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		}
@@ -55,7 +55,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3655437054&spec=5", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3385016019&spec=5", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "星辰旅人",
 	bio: "Protect What You Love./爱你所爱！",
 	links: [
