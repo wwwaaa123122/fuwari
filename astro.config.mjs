@@ -28,7 +28,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mcxclr.top/",
+  site: "https://www.xc-lr.cn/",
   base: "/",
   trailingSlash: "always",
 
@@ -42,7 +42,7 @@ export default defineConfig({
         status: 302,
     },
     "/bot": {
-        destination: "https://mcxclr.top/posts/how-use-bot",
+        destination: "https://www.xc-lr.cn/posts/how-use-bot",
         status: 302,
     }
   },
