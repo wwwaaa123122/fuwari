@@ -34,7 +34,7 @@ export default defineConfig({
 
   redirects: {
     "/v6": {
-        destination: "https://f.1.5.0.9.1.0.0.0.7.4.0.1.0.0.2.ip6.arpa/",
+        destination: "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
         status: 302,
     },
         "/gh": {
