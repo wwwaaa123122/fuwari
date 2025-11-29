@@ -5,7 +5,7 @@
 
 ![企微](../images/qiwei.svg)
 
-![QQ](../images/QQ.png)
+![QQ](../images/QQ.svg)
 
 邮箱：i@mcxclr.top
 
