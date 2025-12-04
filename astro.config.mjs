@@ -32,21 +32,11 @@ export default defineConfig({
   base: "/",
   trailingSlash: "always",
 
-  redirects: {
-    "/v6": {
-        destination: "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
-        status: 302,
-    },
-        "/gh": {
-        destination: "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
-        status: 302,
-    },
-    "/bot": {
-        destination: "https://www.xc-lr.cn/posts/how-use-bot",
-        status: 302,
-    }
+   edirects: {
+    "/v6": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
+    "/gh": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+    "/bot": "/posts/how-use-bot"
   },
-
   integrations: [
       tailwind({
           nesting: true,
