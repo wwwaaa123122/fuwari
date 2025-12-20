@@ -1,20 +1,19 @@
 {
-  "redirects": [
-
-    {
-      "source": "/v6",
-      "destination": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
-      "permanent": false
-    },
-    {
-      "source": "/gh",
-      "destination": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
-      "permanent": false
-    },
-    {
-      "source": "/bot",
-      "destination": "https://mcxclr.top/posts/how-use-bot",
-      "permanent": false
-    }
-  ]
+	"redirects": [
+		{
+			"from": "/v6",
+			"to": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
+			"status": 302
+		},
+		{
+			"from": "/gh",
+			"to": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+			"status": 302
+		},
+		{
+			"from": "/bot",
+			"to": "/posts/how-use-bot",
+			"status": 302
+		}
+	]
 }
