@@ -100,3 +100,16 @@ export type BlogPostData = {
 export type ExpressiveCodeConfig = {
 	theme: string;
 };
+
+export type MusicTrack = {
+	title: string;
+	artist: string;
+	url: string;
+	cover?: string;
+};
+
+export type MusicPlayerConfig = {
+	enable: boolean;
+	defaultVolume: number;
+	playlist: MusicTrack[];
+};

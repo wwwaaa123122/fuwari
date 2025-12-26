@@ -108,3 +108,22 @@ export const statsConfig = {
 	getStatsText: (pageViews: number, visits: number) =>
 		`${statsConfig.viewsText} ${pageViews} · ${statsConfig.visitsText} ${visits}`,
 };
+
+export const musicPlayerConfig = {
+	enable: true,
+	defaultVolume: 0.7,
+	playlist: [
+		{
+			title: "使一颗心免于哀伤",
+			artist: "知更鸟",
+			url: "https://pan.mcxclr.top/api/raw/?path=/Music/%E4%BD%BF%E4%B8%80%E9%A2%97%E5%BF%83%E5%85%8D%E4%BA%8E%E5%93%80%E4%BC%A4%20-%20%E7%9F%A5%E6%9B%B4%E9%B8%9F_HOYO-MiX_Chevy.flac",
+			cover: "https://p2.music.126.net/aR4BlDNkA84tFbg8bBpriA==/109951169585655912.jpg?param=130y130"
+		},
+		{
+			title: "若我不曾见过太阳", 
+			artist: "知更鸟",
+			url: "https://pan.mcxclr.top/api/raw/?path=/Music/%E8%8B%A5%E6%88%91%E4%B8%8D%E6%9B%BE%E8%A7%81%E8%BF%87%E5%A4%AA%E9%98%B3%20-%20%E7%9F%A5%E6%9B%B4%E9%B8%9F_HOYO-MiX_Chevy.flac",
+			cover: "https://p2.music.126.net/aR4BlDNkA84tFbg8bBpriA==/109951169585655912.jpg?param=130y130"
+		}
+	]
+};

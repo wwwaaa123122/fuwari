@@ -1,0 +1,16 @@
+$:
+  vscode:
+    - docker:
+        build: .ide/Dockerfile
+      services:
+        - vscode
+        - docker
+      stages:
+        - name: check env
+          script: |
+            node -v
+            pnpm -v
+        - name: install
+          script: pnpm install
+        - name: dev
+          script: pnpm dev

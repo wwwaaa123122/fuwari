@@ -26,3 +26,4 @@ package-lock.json
 bun.lockb
 yarn.lock
 venv
+.pnpm-store
