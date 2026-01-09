@@ -14,7 +14,7 @@ QQ：
 
 [telegram](https://t.me/wwwaaa123122)
 
-<h2>五年之约倒计时</h2>
+<h2>成年倒计时</h2>
 <div id="five-year-countdown" style="font-size:1.5em;font-weight:bold;color:#ff6600;"></div>
 
 <script>

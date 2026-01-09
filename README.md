@@ -36,63 +36,92 @@ A static blog template built with [Astro](https://astro.build).
     - [Generate a new repository](https://github.com/saicaca/fuwari/generate) from this template or fork this repository.
     - Or run one of the following commands:
        ```sh
-       npm create fuwari@latest
-       yarn create fuwari
-       pnpm create fuwari@latest
-       bun create fuwari@latest
-       deno run -A npm:create-fuwari@latest
-       ```
-2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
-    - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
-3. Edit the config file `src/config.ts` to customize your blog.
-4. Run `pnpm new-post <filename>` to create a new post and edit it in `src/content/posts/`.
-5. Deploy your blog to Vercel, Netlify, GitHub Pages, etc. following [the guides](https://docs.astro.build/en/guides/deploy/). You need to edit the site configuration in `astro.config.mjs` before deployment.
+    # Fuwari — 可定制的 Astro 静态博客模板
 
-## 📝 Frontmatter of Posts
+    一个基于 Astro + Tailwind 的轻量、可配置的个人博客模板，集成了搜索、暗/亮主题、目录与扩展的 Markdown 支持，适合用来搭建技术或个人博客。
 
-```yaml
----
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpg
-tags: [Foo, Bar]
-category: Front-end
-draft: false
-lang: jp      # Set only if the post's language differs from the site's language in `config.ts`
----
-```
+    **演示站点**：https://fuwari.vercel.app
 
-## 🧩 Markdown Extended Syntax
+    ## **特性**
 
-In addition to Astro's default support for [GitHub Flavored Markdown](https://github.github.com/gfm/), several extra Markdown features are included:
+    - 基于 Astro（静态站点生成）与 Tailwind CSS
+    - 响应式设计、暗/亮模式切换
+    - 页面过渡与流畅的交互动画
+    - 本地全文搜索（Pagefind）支持
+    - 扩展的 Markdown 功能（提示框、GitHub 仓库卡片、增强代码块）
+    - 自动生成目录、RSS 输出
 
-- Admonitions ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
-- GitHub repository cards ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
-- Enhanced code blocks with Expressive Code ([Preview](https://fuwari.vercel.app/posts/expressive-code/) / [Docs](https://expressive-code.com/))
+    ## **快速开始**
 
-## ⚡ Commands
+    1. 克隆仓库到本地：
 
-All commands are run from the root of the project, from a terminal:
+    ```bash
+    git clone https://github.com/saicaca/fuwari.git
+    cd fuwari
+    ```
 
-| Command                    | Action                                              |
-|:---------------------------|:----------------------------------------------------|
-| `pnpm install`             | Installs dependencies                               |
-| `pnpm dev`                 | Starts local dev server at `localhost:4321`         |
-| `pnpm build`               | Build your production site to `./dist/`             |
-| `pnpm preview`             | Preview your build locally, before deploying        |
-| `pnpm check`               | Run checks for errors in your code                  |
-| `pnpm format`              | Format your code using Biome                        |
-| `pnpm new-post <filename>` | Create a new post                                   |
-| `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
-| `pnpm astro --help`        | Get help using the Astro CLI                        |
+    2. 安装依赖（推荐使用 `pnpm`）：
 
-## ✏️ Contributing
+    ```bash
+    npm install -g pnpm
+    pnpm install
+    ```
 
-Check out the [Contributing Guide](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) for details on how to contribute to this project.
+    3. 本地开发：
 
-## 📄 License
+    ```bash
+    pnpm dev
+    # 在浏览器打开 http://localhost:4321
+    ```
 
-This project is licensed under the MIT License.
+    4. 构建与预览：
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)
+    ```bash
+    pnpm build
+    pnpm preview
+    ```
+
+    ## **配置**
+
+    主要配置文件位于 [src/config.ts](src/config.ts). 修改该文件可设置站点标题、语言、社交链接、主题色等。
+
+    文章内容存放在 [src/content/posts/](src/content/posts/)。使用 `pnpm new-post <文件名>` 可以快速创建文章模板。
+
+    文章 Frontmatter 示例：
+
+    ```yaml
+    ---
+    title: 我的第一篇文章
+    published: 2024-01-01
+    description: 文章摘要
+    image: ./cover.jpg
+    tags: [示例]
+    category: 技术
+    draft: false
+    lang: zh
+    ---
+    ```
+
+    ## **部署**
+
+    适配 Vercel、Netlify、Cloudflare Pages 等静态站点平台。部署前请根据目标平台调整 `astro.config.mjs` 与构建设置。
+
+    ## **项目结构（简要）**
+
+    - `src/`：站点源码（页面、组件、内容、样式）
+    - `public/`：静态资源
+    - `package.json`：脚本与依赖
+
+    具体实现细节和插件位于 `src/plugins/`、`src/components/` 等目录。
+
+    ## **贡献与问题反馈**
+
+    欢迎提交 Issue 或 Pull Request。贡献指南见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+    ## **许可证**
+
+    本项目采用 MIT 许可证。详见 LICENSE 文件。
+
+    ---
+
+    如果你希望我把 README 翻译为其它语言、补充更多部署示例或增加快速配置步骤，我可以继续完善。
