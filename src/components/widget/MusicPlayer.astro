@@ -105,12 +105,42 @@ import { musicPlayerConfig } from "../../config";
 			this.isPlaying = false;
 			this.audio = null;
 			this.initializeElements();
+			// 注册实例，便于音频事件广播到所有 UI 实例
+			window.__fuwari_uiInstances = window.__fuwari_uiInstances || [];
+			window.__fuwari_uiInstances.push(this);
 			this.bindEvents();
-			this.loadTrack(0);
+			
+			// 恢复全局状态（如果已存在则不重置播放）
+			const globalState = window.__fuwari_musicState || null;
+			if (globalState) {
+				this.currentTrackIndex = globalState.currentTrackIndex ?? 0;
+				this.isPlaying = globalState.isPlaying ?? false;
+				this.updateUIFromState();
+			} else {
+				// 首次初始化：仅在 audio 为空或没有 src 时加载第一首
+				if (!this.audio.src) {
+					this.loadTrack(0);
+				}
+			}
 		}
 		
 		initializeElements() {
-			this.audio = document.getElementById('audio-element');
+			// 使用页面共享的 audio 元素，避免组件重新挂载时重置播放
+			const localAudio = document.getElementById('audio-element');
+			if (!window.__fuwari_sharedAudio) {
+				window.__fuwari_sharedAudio = localAudio || document.createElement('audio');
+				window.__fuwari_sharedAudio.id = 'audio-element';
+				window.__fuwari_sharedAudio.preload = 'metadata';
+				// 将共享 audio 移到 body，保证在路由变化时不被销毁
+				document.body.appendChild(window.__fuwari_sharedAudio);
+			} else {
+				// 如果本地存在 audio（由当前组件渲染），移除它，统一使用共享的 audio
+				if (localAudio && localAudio !== window.__fuwari_sharedAudio) {
+					localAudio.remove();
+				}
+			}
+			this.audio = window.__fuwari_sharedAudio;
+			
 			this.playPauseBtn = document.getElementById('play-pause-btn');
 			this.playIcon = document.getElementById('play-icon');
 			this.prevBtn = document.getElementById('prev-btn');
@@ -128,8 +158,13 @@ import { musicPlayerConfig } from "../../config";
 			this.playlist = document.getElementById('playlist');
 			this.playlistItems = document.getElementById('playlist-items');
 			
-			// 设置初始音量
-			this.audio.volume = this.config.defaultVolume;
+			// 设置初始音量（如果尚未设置）
+			if (typeof this.audio.volume === 'number') {
+				// 保持已存在音量，否则应用默认音量
+				if (!window.__fuwari_musicState) this.audio.volume = this.config.defaultVolume;
+			} else {
+				this.audio.volume = this.config.defaultVolume;
+			}
 		}
 		
 		bindEvents() {
@@ -149,10 +184,21 @@ import { musicPlayerConfig } from "../../config";
 			// 音量控制
 			this.volumeBar.addEventListener('click', (e) => this.setVolume(e));
 			
-			// 音频事件
-			this.audio.addEventListener('timeupdate', () => this.updateProgress());
-			this.audio.addEventListener('loadedmetadata', () => this.updateDuration());
-			this.audio.addEventListener('ended', () => this.nextTrack());
+			// 仅为共享 audio 添加一次事件监听，并广播到所有 UI 实例
+			if (!window.__fuwari_audioListenersAdded) {
+				this.audio.addEventListener('timeupdate', () => {
+					window.__fuwari_uiInstances.forEach(i => i.updateProgress());
+				});
+				this.audio.addEventListener('loadedmetadata', () => {
+					window.__fuwari_uiInstances.forEach(i => i.updateDuration());
+				});
+				this.audio.addEventListener('ended', () => {
+					// 使用第一个实例作为控制器推进下一首
+					const ctrl = window.__fuwari_uiInstances && window.__fuwari_uiInstances[0];
+					if (ctrl) ctrl._globalNextTrack();
+				});
+				window.__fuwari_audioListenersAdded = true;
+			}
 			
 			// 生成播放列表
 			this.generatePlaylist();
@@ -164,6 +210,18 @@ import { musicPlayerConfig } from "../../config";
 			this.currentTrackIndex = index;
 			const track = this.config.playlist[index];
 			
+			// 如果当前 src 已经是目标歌曲，则不重新设置以避免重置播放进度
+			if (this.audio.src && this.audio.src === track.url) {
+				// 仅更新 UI 信息
+				this.cover.src = track.cover || '';
+				this.title.textContent = track.title;
+				this.artist.textContent = track.artist;
+				this.updatePlaylistHighlight();
+				// 更新全局状态
+				window.__fuwari_musicState = { currentTrackIndex: this.currentTrackIndex, isPlaying: this.isPlaying };
+				return;
+			}
+			
 			this.audio.src = track.url;
 			this.cover.src = track.cover || '';
 			this.title.textContent = track.title;
@@ -171,6 +229,9 @@ import { musicPlayerConfig } from "../../config";
 			
 			// 更新播放列表高亮
 			this.updatePlaylistHighlight();
+			
+			// 更新全局状态
+			window.__fuwari_musicState = { currentTrackIndex: this.currentTrackIndex, isPlaying: this.isPlaying };
 			
 			// 如果正在播放，自动播放新歌曲
 			if (this.isPlaying) {
@@ -191,6 +252,7 @@ import { musicPlayerConfig } from "../../config";
 				this.isPlaying = true;
 				this.playIcon.setAttribute('name', 'material-symbols:pause');
 				this.cover.classList.add('playing');
+				window.__fuwari_musicState = { currentTrackIndex: this.currentTrackIndex, isPlaying: true };
 			}).catch(console.error);
 		}
 		
@@ -199,6 +261,7 @@ import { musicPlayerConfig } from "../../config";
 			this.isPlaying = false;
 			this.playIcon.setAttribute('name', 'material-symbols:play-arrow');
 			this.cover.classList.remove('playing');
+			window.__fuwari_musicState = { currentTrackIndex: this.currentTrackIndex, isPlaying: false };
 		}
 		
 		prevTrack() {
@@ -206,11 +269,21 @@ import { musicPlayerConfig } from "../../config";
 				? this.currentTrackIndex - 1 
 				: this.config.playlist.length - 1;
 			this.loadTrack(prevIndex);
+			// 如果原本处于播放状态，继续播放
+			if (this.isPlaying) this.audio.play().catch(console.error);
 		}
 		
 		nextTrack() {
 			const nextIndex = (this.currentTrackIndex + 1) % this.config.playlist.length;
 			this.loadTrack(nextIndex);
+			if (this.isPlaying) this.audio.play().catch(console.error);
+		}
+		
+		// 由共享 audio 的 ended 事件调用，保证在全局推进播放
+		_globalNextTrack() {
+			const nextIndex = (this.currentTrackIndex + 1) % this.config.playlist.length;
+			this.loadTrack(nextIndex);
+			if (this.isPlaying) this.audio.play().catch(console.error);
 		}
 		
 		togglePlaylist() {
@@ -228,16 +301,19 @@ import { musicPlayerConfig } from "../../config";
 			const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
 			this.audio.volume = percent;
 			this.volumeFill.style.width = `${percent * 100}%`;
+			// 保存体现在全局状态中
+			window.__fuwari_musicState = window.__fuwari_musicState || {}; window.__fuwari_musicState.volume = percent;
 		}
 		
 		updateProgress() {
+			if (!this.audio.duration) return;
 			const percent = (this.audio.currentTime / this.audio.duration) * 100;
-			this.progressFill.style.width = `${percent}%`;
-			this.currentTime.textContent = this.formatTime(this.audio.currentTime);
+			if (this.progressFill) this.progressFill.style.width = `${percent}%`;
+			if (this.currentTime) this.currentTime.textContent = this.formatTime(this.audio.currentTime);
 		}
 		
 		updateDuration() {
-			this.totalTime.textContent = this.formatTime(this.audio.duration);
+			if (this.totalTime) this.totalTime.textContent = this.formatTime(this.audio.duration);
 		}
 		
 		formatTime(seconds) {
@@ -260,20 +336,20 @@ import { musicPlayerConfig } from "../../config";
 				const item = document.createElement('div');
 				item.className = 'flex items-center gap-2.5 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-all duration-200 group';
 				item.innerHTML = `
-					<div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
-						<img src="${track.cover || ''}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
-							 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-						<div class="w-full h-full bg-gradient-to-br from-[var(--primary)]/20 to-[var(--primary)]/40 flex items-center justify-center" style="display: none;">
-							<Icon name="material-symbols:music-note" class="text-white text-xs"></Icon>
+						<div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+							<img src="${track.cover || ''}" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+								 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+							<div class="w-full h-full bg-gradient-to-br from-[var(--primary)]/20 to-[var(--primary)]/40 flex items-center justify-center" style="display: none;">
+								<Icon name="material-symbols:music-note" class="text-white text-xs"></Icon>
+							</div>
 						</div>
-					</div>
-					<div class="flex-1 min-w-0">
-						<div class="text-xs font-medium truncate dark:text-neutral-50 group-hover:text-[var(--primary)] transition-colors">${track.title}</div>
-						<div class="text-xs text-neutral-500 truncate">${track.artist}</div>
-					</div>
-					<div class="w-4 h-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-						<Icon name="material-symbols:play-arrow" class="text-[var(--primary)] text-sm"></Icon>
-					</div>
+						<div class="flex-1 min-w-0">
+							<div class="text-xs font-medium truncate dark:text-neutral-50 group-hover:text-[var(--primary)] transition-colors">${track.title}</div>
+							<div class="text-xs text-neutral-500 truncate">${track.artist}</div>
+						</div>
+						<div class="w-4 h-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+							<Icon name="material-symbols:play-arrow" class="text-[var(--primary)] text-sm"></Icon>
+						</div>
 				`;
 				item.addEventListener('click', () => {
 					this.loadTrack(index);
@@ -284,7 +360,7 @@ import { musicPlayerConfig } from "../../config";
 		}
 		
 		updatePlaylistHighlight() {
-			const items = this.playlistItems.children;
+			const items = this.playlistItems ? this.playlistItems.children : [];
 			for (let i = 0; i < items.length; i++) {
 				if (i === this.currentTrackIndex) {
 					items[i].classList.add('bg-[var(--primary)]/10');
@@ -293,13 +369,33 @@ import { musicPlayerConfig } from "../../config";
 				}
 			}
 		}
-	}
-	
-	// 初始化音乐播放器
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', () => {
-			new MusicPlayer();
-		});
+		
+		updateUIFromState() {
+			const idx = this.currentTrackIndex;
+			const track = this.config.playlist[idx];
+			if (track) {
+				this.cover && (this.cover.src = track.cover || '');
+				this.title && (this.title.textContent = track.title);
+				this.artist && (this.artist.textContent = track.artist);
+				this.updatePlaylistHighlight();
+			}
+			// 设置播放按钮状态
+			if (this.isPlaying) {
+				this.playIcon && this.playIcon.setAttribute('name', 'material-symbols:pause');
+				this.cover && this.cover.classList.add('playing');
+			} else {
+				this.playIcon && this.playIcon.setAttribute('name', 'material-symbols:play-arrow');
+				this.cover && this.cover.classList.remove('playing');
+			}
+		}
+		
+		// 简单查找当前 src 对应的播放列表索引
+		findTrackIndexBySrc(src) {
+			if (!src) return null;
+			for (let i = 0; i < this.config.playlist.length; i++) {
+				if (this.config.playlist[i].url === src) return i;
+			}
+			return null;
 	} else {
 		new MusicPlayer();
 	}
