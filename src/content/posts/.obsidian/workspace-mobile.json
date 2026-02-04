@@ -11,10 +11,14 @@
             "id": "d61d26d84097f591",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "ssh-by-tunnel.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "ssh-by-tunnel"
             }
           }
         ]
@@ -94,6 +98,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "ssh-by-tunnel.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
