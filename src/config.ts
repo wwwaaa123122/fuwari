@@ -53,7 +53,7 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "统计",
-			url: "https://cloud.umami.is/share/DMfBtCxd4Y1VOCMA",
+			url: "https://umami.xc-lr.cn/share/FNH4YZYF9xPh0Xjt",
 			external: true,
 		},
 	],
