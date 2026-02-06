@@ -23,7 +23,7 @@ export const siteConfig: SiteConfig = {
 		credit: {
 			enable: true, // Display the credit text of the banner image
 			text: "二叉树树的随机图", // Credit text to be displayed
-			url: "https://eopfapi.acofork.com/pic?img=ua", // (Optional) URL link to the original artwork or artist's page
+			url: "https://img.072103.xyz/h", // (Optional) URL link to the original artwork or artist's page
 		},
 	},
 	toc: {
