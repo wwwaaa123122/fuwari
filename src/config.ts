@@ -93,8 +93,8 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 
 export const umamiConfig: UmamiConfig = {
 	enable: true,
-	baseUrl: "https://cloud.umami.is",
-	shareId: "DMfBtCxd4Y1VOCMA",
+	baseUrl: "https://umami.xc-lr.cn/",
+	shareId: "FNH4YZYF9xPh0Xjt",
 	region: "us", // 'us' for US, 'eu' for EU
 	timezone: "Asia/Shanghai",
 };
@@ -104,7 +104,7 @@ export const statsConfig = {
 	visitsText: "访客",
 	loadingText: "统计加载中...",
 	unavailableText:
-		"统计不可用。请检查是否屏蔽了Umami域名，如AdGuard和AdBlock等插件",
+		"-",
 	getStatsText: (pageViews: number, visits: number) =>
 		`${statsConfig.viewsText} ${pageViews} · ${statsConfig.visitsText} ${visits}`,
 };
