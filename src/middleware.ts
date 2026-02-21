@@ -5,7 +5,7 @@ import { defineMiddleware } from "astro:middleware";
  * 在应用层处理，确保所有平台部署目标（Vercel、Cloudflare、Netlify 等）都能生效
  */
 const REDIRECTS: Record<string, string> = {
-	"/v6": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
+	"/v6": "http://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
 	"/gh": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
 	"/bot": "/posts/how-use-bot",
 };
