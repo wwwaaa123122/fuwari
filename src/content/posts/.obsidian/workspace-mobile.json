@@ -86,7 +86,7 @@
         }
       }
     ],
-    "currentTab": 0
+    "currentTab": 1
   },
   "right": {
     "id": "61c1d5475f8bb8b0",
@@ -152,7 +152,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "d61d26d84097f591",
+  "active": "e4d21e2f44799fd3",
   "lastOpenFiles": [
     "Untitled.md"
   ]
