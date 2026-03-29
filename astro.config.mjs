@@ -163,4 +163,8 @@ export default defineConfig({
 			],
 		],
 	},
+
+	vite: {
+		assetsInclude: ["**/*.webg"],
+	},
 });
