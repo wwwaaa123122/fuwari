@@ -1,7 +1,13 @@
 ---
 
 import { siteConfig } from "../config";
+
+interface Props {
+	blur?: number;
+}
+
+const { blur = siteConfig.background.blur || 10 } = Astro.props;
 ---
 
-<div id="config-carrier" data-hue={siteConfig.themeColor.hue}>
+<div id="config-carrier" data-hue={siteConfig.themeColor.hue} data-blur={blur}>
 </div>

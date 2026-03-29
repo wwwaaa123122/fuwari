@@ -1,3 +1,47 @@
 .expressive-code .frame {
   @apply !shadow-none;
 }
+
+/* 确保代码框使用深色背景 - 完全不透明 */
+.expressive-code,
+.expressive-code .frame,
+.expressive-code .frame > *,
+.expressive-code pre,
+.expressive-code pre > *,
+.expressive-code code,
+.expressive-code code > *,
+.expressive-code .code,
+.expressive-code .code > *,
+.expressive-code .ec-line,
+.expressive-code .ec-line > *,
+.expressive-code .gutter,
+.expressive-code .gutter > *,
+.expressive-code .ln {
+  background-color: var(--codeblock-bg) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* 确保代码框顶部栏也有正确的背景色 - 完全不透明 */
+.expressive-code .header,
+.expressive-code .header > *,
+.expressive-code .title,
+.expressive-code .title > * {
+  background-color: var(--codeblock-topbar-bg) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* 移除所有可能的半透明效果 */
+.expressive-code .frame,
+.expressive-code .frame *,
+.expressive-code pre,
+.expressive-code pre *,
+.expressive-code code,
+.expressive-code code *,
+.expressive-code .ec-line,
+.expressive-code .ec-line * {
+  background-color: rgb(26 26 27) !important;
+}

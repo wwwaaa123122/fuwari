@@ -4,6 +4,9 @@
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
     }
+    .card-base-transparent {
+        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg-transparent)] backdrop-blur-md transition;
+    }
     h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
         @apply transition;
     }
@@ -113,11 +116,10 @@
 }
 
 .custom-md img, #post-cover img {
-    @apply cursor-zoom-in
+	@apply cursor-zoom-in
 }
 
-::selection {
-    background-color: var(--selection-bg)
+::selection {    background-color: var(--selection-bg)
 }
 
 .dash-line {

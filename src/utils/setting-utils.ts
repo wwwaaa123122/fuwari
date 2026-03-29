@@ -59,3 +59,23 @@ export function setTheme(theme: LIGHT_DARK_MODE): void {
 export function getStoredTheme(): LIGHT_DARK_MODE {
 	return (localStorage.getItem("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
 }
+
+export function getDefaultBlur(): number {
+	const fallback = "10";
+	const configCarrier = document.getElementById("config-carrier");
+	return Number.parseInt(configCarrier?.dataset.blur || fallback);
+}
+
+export function getBlur(): number {
+	const stored = localStorage.getItem("blur");
+	return stored ? Number.parseInt(stored) : getDefaultBlur();
+}
+
+export function setBlur(blur: number): void {
+	localStorage.setItem("blur", String(blur));
+	const r = document.querySelector(":root") as HTMLElement;
+	if (!r) {
+		return;
+	}
+	r.style.setProperty("--bg-blur", String(blur) + "px");
+}

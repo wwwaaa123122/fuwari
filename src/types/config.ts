@@ -20,6 +20,11 @@ export type SiteConfig = {
 			url?: string;
 		};
 	};
+	background: {
+		enable: boolean;
+		src: string;
+		blur?: number;
+	};
 	toc: {
 		enable: boolean;
 		depth: 1 | 2 | 3;

@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
 		fixed: false, // Hide the theme color picker for visitors
 	},
 	banner: {
-		enable: true,
+		enable: false,
 		src: "/homeground.webg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
@@ -25,6 +25,11 @@ export const siteConfig: SiteConfig = {
 			text: "二叉树树的随机图", // Credit text to be displayed
 			url: "https://img.072103.xyz/h", // (Optional) URL link to the original artwork or artist's page
 		},
+	},
+	background: {
+		enable: true,
+		src: "/homeground.webg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		blur: 10, // Default blur amount in pixels
 	},
 	toc: {
 		enable: true, // Display the table of contents on the right side of the post
@@ -75,6 +80,11 @@ export const profileConfig: ProfileConfig = {
 			name: "GitHub",
 			icon: "fa6-brands:github",
 			url: "https://github.com/wwwaaa123122",
+		},
+		{
+			name: "Telegram",
+			icon: "fa6-brands:telegram",
+			url: "https://t.me/wwwaaa123122",
 		},
 	],
 };

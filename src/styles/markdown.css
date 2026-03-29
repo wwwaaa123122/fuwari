@@ -37,6 +37,11 @@
         @apply bg-[var(--inline-code-bg)] text-[var(--inline-code-color)] px-1 py-0.5 rounded-md overflow-hidden;
 
         font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+
+        /* 确保代码块中的代码不受行内代码背景色影响 */
+        .expressive-code & {
+            background-color: transparent !important;
+        }
         &:before {
             content:none;
         }

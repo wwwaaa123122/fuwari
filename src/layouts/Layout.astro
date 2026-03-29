@@ -134,6 +134,12 @@ const bannerOffset =
 			const hue = localStorage.getItem('hue') || configHue;
 			document.documentElement.style.setProperty('--hue', hue);
 
+			// Load the blur from local storage
+			const configCarrier = document.getElementById('config-carrier');
+			const defaultBlur = configCarrier?.dataset.blur || '10';
+			const blur = localStorage.getItem('blur') || defaultBlur;
+			document.documentElement.style.setProperty('--bg-blur', `${blur}px`);
+
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
 			let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
 			offset = offset - offset % 4;
@@ -159,7 +165,18 @@ const bannerOffset =
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>
-		<ConfigCarrier></ConfigCarrier>
+		<ConfigCarrier blur={siteConfig.background.blur || 10}></ConfigCarrier>
+		{siteConfig.background.enable && (
+			<div id="background-wrapper" class="fixed inset-0 -z-10 overflow-hidden">
+				<img
+					id="background-image"
+					src={url(siteConfig.background.src)}
+					alt="Background image"
+					class="absolute inset-0 w-full h-full object-cover"
+					style={`filter: blur(var(--bg-blur, 10px))`}
+				/>
+			</div>
+		)}
 		<slot />
 
 		<!-- Music Player - fixed at bottom right -->
@@ -215,7 +232,7 @@ import {
 	// SizeObserverPlugin,
 	// ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
+import {getHue, getStoredTheme, setHue, setTheme, getBlur, setBlur} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
 import {
 	BANNER_HEIGHT,
@@ -286,6 +303,7 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 	});
 }
 setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
+setClickOutsideToClose("blur-setting", ["blur-setting", "blur-settings-switch"])
 setClickOutsideToClose("nav-menu-panel", ["nav-menu-panel", "nav-menu-switch"])
 setClickOutsideToClose("search-panel", ["search-panel", "search-bar", "search-switch"])
 
@@ -297,6 +315,10 @@ function loadTheme() {
 
 function loadHue() {
 	setHue(getHue())
+}
+
+function loadBlur() {
+	setBlur(getBlur())
 }
 
 function initCustomScrollbar() {
@@ -380,6 +402,7 @@ function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
 	loadHue();
+	loadBlur();
 	initCustomScrollbar();
 	showBanner();
 }
