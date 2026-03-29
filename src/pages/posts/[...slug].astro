@@ -11,6 +11,7 @@ import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
+import PostHistory from "../../components/widget/PostHistory.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import { umamiConfig, statsConfig } from "../../config";
@@ -132,6 +133,10 @@ const jsonLd = {
             </div>}
         </a>
     </div>
+
+<!-- 文章修订记录 -->
+{siteConfig.postHistory.enable && <PostHistory filePath={getDir(entry.id) + "/" + entry.slug + ".md"} />}
+
 <!-- 🗨️ 插入 Giscus 评论组件 -->
 <div id="giscus-comments" style="margin-top: 3rem;">
   <script src="https://giscus.app/client.js"

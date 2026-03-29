@@ -1,0 +1,99 @@
+---
+import { Icon } from "astro-icon/components";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+
+interface Props {
+  filePath: string;
+}
+
+const { filePath } = Astro.props;
+
+// 读取 Git 历史文件
+let gitHistory = {};
+try {
+  const historyFile = await import("../../json/git-history.json", {
+    assert: { type: "json" },
+  });
+  gitHistory = historyFile.default;
+} catch (error) {
+  console.error("Failed to load git history:", error);
+}
+
+// 获取当前文件的修订历史
+const fileHistory = gitHistory[filePath] || [];
+
+// 格式化日期
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+// 简化提交信息
+function simplifyMessage(message) {
+  // 移除常见的提交前缀
+  const prefixes = ["feat:", "fix:", "style:", "docs:", "refactor:", "test:", "chore:", "perf:"];
+  let simplified = message;
+  prefixes.forEach((prefix) => {
+    if (simplified.startsWith(prefix)) {
+      simplified = simplified.substring(prefix.length).trim();
+    }
+  });
+  return simplified;
+}
+---
+
+{fileHistory.length > 0 && (
+  <div class="card-base p-4 mt-6 mb-4">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-bold text-lg flex items-center gap-2">
+        <Icon name="material-symbols:history-rounded" class="text-[1.25rem]"></Icon>
+        文章修订记录
+      </h3>
+      <span class="text-sm text-50">{fileHistory.length} 次修订</span>
+    </div>
+
+    <div class="space-y-3">
+      {fileHistory.map((commit, index) => (
+        <div class:list={[
+          "flex items-start gap-3 p-3 rounded-lg transition",
+          index === 0 ? "bg-[var(--btn-plain-bg-hover)]" : "bg-[var(--btn-regular-bg)]",
+        ]}>
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center">
+            <Icon name="material-symbols:commit" class="text-[var(--primary)] text-[1rem]"></Icon>
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-medium text-sm text-90">{commit.author}</span>
+              <span class="text-xs text-30">·</span>
+              <span class="text-xs text-50">{formatDate(commit.date)}</span>
+            </div>
+            <p class="text-sm text-75 line-clamp-2">{simplifyMessage(commit.message)}</p>
+            <a
+              href={`https://github.com/${import.meta.env.SITE?.github?.repo || 'wwwaaa123122/blog'}/commit/${commit.hash}`}
+              target="_blank"
+              rel="noopener"
+              class="text-xs text-[var(--primary)] hover:underline mt-1 inline-flex items-center gap-1"
+            >
+              <Icon name="material-symbols:link" class="text-[0.875rem]"></Icon>
+              查看提交
+            </a>
+          </div>
+
+          {index === 0 && (
+            <span class="flex-shrink-0 px-2 py-1 text-xs font-medium bg-[var(--primary)]/10 text-[var(--primary)] rounded-full">
+              最新
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+)}

@@ -29,6 +29,9 @@ export type SiteConfig = {
 		enable: boolean;
 		depth: 1 | 2 | 3;
 	};
+	postHistory: {
+		enable: boolean;
+	};
 
 	favicon: Favicon[];
 };

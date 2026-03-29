@@ -27,3 +27,4 @@ bun.lockb
 yarn.lock
 venv
 .pnpm-store
+src/json/*
