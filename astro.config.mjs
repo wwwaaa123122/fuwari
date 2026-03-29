@@ -31,8 +31,8 @@ export default defineConfig({
 	base: "/",
 	trailingSlash: "always",
 	redirects: {
-		"/v6": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
-		"/gh": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+		"/v6": "http://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
+		"/gh": "http://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
 		"/bot": "/posts/how-use-bot",
 	},
 	integrations: [
@@ -163,31 +163,4 @@ export default defineConfig({
 			],
 		],
 	},
-
-	// ✅ 新增/更新：Vite 开发服务器 + 构建配置
-	vite: {
-		// 👇 开发服务器配置：允许所有主机 & 监听所有接口
-		server: {
-			host: "0.0.0.0",        // 允许外部连接（容器、局域网、CNB）
-			allowedHosts: "all",    // 允许任意 Host 头（解决 "host not allowed" 错误）
-		},
-
-		// 👇 原有构建配置：保留 Rollup 警告抑制
-		build: {
-			rollupOptions: {
-				onwarn(warning, warn) {
-					// temporarily suppress this warning
-					if (
-						warning.message.includes("is dynamically imported by") &&
-						warning.message.includes("but also statically imported by")
-					) {
-						return;
-					}
-					warn(warning);
-				},
-			},
-		},
-	},
-
-	adapter: cloudflare(),
 });
