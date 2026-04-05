@@ -16,7 +16,7 @@
     "format": "biome format --write ./src",
     "lint": "biome check --write ./src",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
     "vercel-build": "git clone --depth=1 --no-single-branch . temp_clone && cd temp_clone && git fetch --unshallow && pnpm update-diff && cd .. && mkdir -p src/json && cp -f temp_clone/src/json/git-history.json src/json/git-history.json && rm -rf temp_clone && pnpm build"
   },
   "dependencies": {
