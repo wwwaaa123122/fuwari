@@ -107,6 +107,9 @@ const jsonLd = {
                 <Content />
             </Markdown>
 
+<!-- 文章修订记录 -->
+{siteConfig.postHistory.enable && <PostHistory filePath={getDir(entry.id) + "/" + entry.slug + ".md"} />}
+
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
@@ -133,9 +136,6 @@ const jsonLd = {
             </div>}
         </a>
     </div>
-
-<!-- 文章修订记录 -->
-{siteConfig.postHistory.enable && <PostHistory filePath={getDir(entry.id) + "/" + entry.slug + ".md"} />}
 
 <!-- 🗨️ 插入 Giscus 评论组件 -->
 <div id="giscus-comments" style="margin-top: 3rem;">
