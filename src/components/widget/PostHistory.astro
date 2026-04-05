@@ -1,7 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
 
 interface Props {
   filePath: string;
@@ -47,6 +45,8 @@ function simplifyMessage(message) {
   });
   return simplified;
 }
+
+const hasMultipleCommits = fileHistory.length > 1;
 ---
 
 {fileHistory.length > 0 && (
@@ -60,11 +60,9 @@ function simplifyMessage(message) {
     </div>
 
     <div class="space-y-3">
-      {fileHistory.map((commit, index) => (
-        <div class:list={[
-          "flex items-start gap-3 p-3 rounded-lg transition",
-          index === 0 ? "bg-[var(--btn-plain-bg-hover)]" : "bg-[var(--btn-regular-bg)]",
-        ]}>
+      {/* 最新一条始终显示 */}
+      {fileHistory.slice(0, 1).map((commit, index) => (
+        <div class="flex items-start gap-3 p-3 rounded-lg transition bg-[var(--btn-plain-bg-hover)]">
           <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center">
             <Icon name="material-symbols:commit" class="text-[var(--primary)] text-[1rem]"></Icon>
           </div>
@@ -77,7 +75,7 @@ function simplifyMessage(message) {
             </div>
             <p class="text-sm text-75 line-clamp-2">{simplifyMessage(commit.message)}</p>
             <a
-              href={`https://github.com/${import.meta.env.SITE?.github?.repo || 'wwwaaa123122/blog'}/commit/${commit.hash}`}
+              href={`https://github.com/wwwaaa123122/fuwari/commit/${commit.hash}`}
               target="_blank"
               rel="noopener"
               class="text-xs text-[var(--primary)] hover:underline mt-1 inline-flex items-center gap-1"
@@ -87,13 +85,76 @@ function simplifyMessage(message) {
             </a>
           </div>
 
-          {index === 0 && (
-            <span class="flex-shrink-0 px-2 py-1 text-xs font-medium bg-[var(--primary)]/10 text-[var(--primary)] rounded-full">
-              最新
-            </span>
-          )}
+          <span class="flex-shrink-0 px-2 py-1 text-xs font-medium bg-[var(--primary)]/10 text-[var(--primary)] rounded-full">
+            最新
+          </span>
         </div>
       ))}
+
+      {/* 历史记录，默认隐藏 */}
+      {hasMultipleCommits && (
+        <div id="history-collapsible" class="hidden space-y-3">
+          {fileHistory.slice(1).map((commit, index) => (
+            <div class="flex items-start gap-3 p-3 rounded-lg transition bg-[var(--btn-regular-bg)]">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center">
+                <Icon name="material-symbols:commit" class="text-[var(--primary)] text-[1rem]"></Icon>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-medium text-sm text-90">{commit.author}</span>
+                  <span class="text-xs text-30">·</span>
+                  <span class="text-xs text-50">{formatDate(commit.date)}</span>
+                </div>
+                <p class="text-sm text-75 line-clamp-2">{simplifyMessage(commit.message)}</p>
+                <a
+                  href={`https://github.com/wwwaaa123122/fuwari/commit/${commit.hash}`}
+                  target="_blank"
+                  rel="noopener"
+                  class="text-xs text-[var(--primary)] hover:underline mt-1 inline-flex items-center gap-1"
+                >
+                  <Icon name="material-symbols:link" class="text-[0.875rem]"></Icon>
+                  查看提交
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* 展开/收起按钮 */}
+      {hasMultipleCommits && (
+        <button
+          id="history-toggle"
+          class="w-full py-2 text-sm text-[var(--primary)] hover:bg-[var(--btn-regular-bg)] rounded-lg transition flex items-center justify-center gap-1"
+        >
+          <span id="toggle-text">展开历史记录</span>
+          <Icon name="material-symbols:expand-more-rounded" id="toggle-icon" class="text-[1rem] transition-transform"></Icon>
+        </button>
+      )}
     </div>
   </div>
 )}
+
+<script>
+  const toggleBtn = document.getElementById('history-toggle');
+  const collapsible = document.getElementById('history-collapsible');
+  const toggleText = document.getElementById('toggle-text');
+  const toggleIcon = document.getElementById('toggle-icon');
+  
+  let expanded = false;
+
+  toggleBtn?.addEventListener('click', () => {
+    expanded = !expanded;
+    
+    if (expanded) {
+      collapsible?.classList.remove('hidden');
+      toggleText!.textContent = '收起历史记录';
+      toggleIcon?.classList.add('rotate-180');
+    } else {
+      collapsible?.classList.add('hidden');
+      toggleText!.textContent = '展开历史记录';
+      toggleIcon?.classList.remove('rotate-180');
+    }
+  });
+</script>
