@@ -33,8 +33,8 @@ export default defineConfig({
 	output: process.env.USE_WORKER === 'true' ? 'server' : 'static',
 	adapter: process.env.USE_WORKER === 'true' ? cloudflare() : undefined,
 	redirects: {
-		"/v6": "http://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
-		"/gh": "http://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
+		"/v6": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
+		"/gh": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
 		"/bot": "/posts/how-use-bot",
 	},
 	integrations: [
