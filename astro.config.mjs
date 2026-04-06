@@ -1,4 +1,3 @@
-import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
@@ -30,8 +29,6 @@ export default defineConfig({
 	site: "https://www.xc-lr.cn/",
 	base: "/",
 	trailingSlash: "always",
-	output: process.env.USE_WORKER === 'true' ? 'server' : 'static',
-	adapter: process.env.USE_WORKER === 'true' ? cloudflare() : undefined,
 	redirects: {
 		"/v6": "https://8.6.8.f.0.7.4.0.1.0.0.2.ip6.arpa/",
 		"/gh": "https://gh.2.7.0.0.4.2.0.0.0.7.4.0.1.0.0.2.ip6.arpa/wwwaaa123122",
