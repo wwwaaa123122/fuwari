@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && [ \"$USE_WORKER\" != 'true' ] && pagefind --site dist || true",
     "build-with-history": "node scripts/build-with-history.js",
     "preview": "astro preview",
     "astro": "astro",
