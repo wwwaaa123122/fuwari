@@ -1,15 +1,8 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "blog",
-  "main": "./dist/_worker.js/index.js",
-  // 更新为今天的日期
-  "compatibility_date": "2025-07-29",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist"
-  },
-  "observability": {
-    "enabled": true
-  }
+	"name": "blog",
+	"compatibility_date": "2026-04-06",
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "404-page"
+	}
 }
