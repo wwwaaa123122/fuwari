@@ -232,7 +232,7 @@ import {
 	// SizeObserverPlugin,
 	// ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme, getBlur, setBlur} from "../utils/setting-utils";
+import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
 import {
 	BANNER_HEIGHT,
@@ -303,7 +303,6 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 	});
 }
 setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
-setClickOutsideToClose("blur-setting", ["blur-setting", "blur-settings-switch"])
 setClickOutsideToClose("nav-menu-panel", ["nav-menu-panel", "nav-menu-switch"])
 setClickOutsideToClose("search-panel", ["search-panel", "search-bar", "search-switch"])
 
@@ -315,10 +314,6 @@ function loadTheme() {
 
 function loadHue() {
 	setHue(getHue())
-}
-
-function loadBlur() {
-	setBlur(getBlur())
 }
 
 function initCustomScrollbar() {
@@ -402,7 +397,6 @@ function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
 	loadHue();
-	loadBlur();
 	initCustomScrollbar();
 	showBanner();
 }
