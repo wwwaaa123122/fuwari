@@ -3,8 +3,8 @@ title: Fuwari 主题背景图功能教程
 published: 2026-03-29
 description: '为 Fuwari 主题添加背景图、高斯模糊和半透明效果的完整配置教程'
 image: '/homeground.webg'
-tags: [fuwari, tutorial, customization]
-category: 'tutorial'
+tags: [fuwari]
+category: 'tech'
 draft: false
 lang: 'zh_CN'
 ---
