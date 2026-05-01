@@ -64,4 +64,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run Astro Build
-        run: pnpm astro build
+        run: git clone https://github.com/wwwaaa123122/fuwari temp && cd temp && corepack enable && pnpm install && pnpm update-diff && cd .. && mkdir -p src/json && mv -f temp/src/json/git-history.json src/json/git-history.json && rm -rf temp && pnpm build

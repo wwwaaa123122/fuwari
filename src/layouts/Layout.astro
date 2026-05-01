@@ -173,8 +173,12 @@ const bannerOffset =
 					src={url(siteConfig.background.src)}
 					alt="Background image"
 					class="absolute inset-0 w-full h-full object-cover"
-					style={`filter: blur(var(--bg-blur, 10px))`}
 				/>
+				<div
+					id="background-blur"
+					class="absolute inset-0 w-full h-full bg-transparent"
+					style={`backdrop-filter: blur(var(--bg-blur, 10px)); -webkit-backdrop-filter: blur(var(--bg-blur, 10px));`}
+				></div>
 			</div>
 		)}
 		<slot />
@@ -403,7 +407,11 @@ function init() {
 /* Load settings when entering the site */
 init();
 
-const setup = () => {
+const setupSwup = () => {
+	console.log('Swup setup called');
+	console.log('Swup instance:', window.swup);
+	console.log('Swup containers:', window.swup?.options?.containers);
+
 	// TODO: temp solution to change the height of the banner
 /*
 	window.swup.hooks.on('animation:out:start', () => {
@@ -416,7 +424,8 @@ const setup = () => {
 		}
 	})
 */
-	window.swup.hooks.on('link:click', () => {
+	window.swup.hooks.on('link:click', (anchor: any) => {
+		console.log('Swup link clicked:', anchor);
 		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')
 
@@ -433,7 +442,12 @@ const setup = () => {
 			navbar.classList.add('navbar-hidden')
 		}
 	})
-	window.swup.hooks.on('content:replace', initCustomScrollbar)
+	window.swup.hooks.on('content:replace', () => {
+		console.log('Swup content replaced');
+		console.log('Swup container found:', !!document.getElementById('swup-container'));
+		console.log('TOC container found:', !!document.getElementById('toc'));
+		initCustomScrollbar();
+	})
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')
@@ -477,10 +491,13 @@ const setup = () => {
         }, 200)
 	});
 }
+console.log('Checking swup initialization:', !!window?.swup?.hooks);
 if (window?.swup?.hooks) {
-	setup()
+	console.log('Swup hooks found, setting up...');
+	setupSwup()
 } else {
-	document.addEventListener('swup:enable', setup)
+	console.log('Waiting for swup:enable event...');
+	document.addEventListener('swup:enable', setupSwup)
 }
 
 let backToTopBtn = document.getElementById('back-to-top-btn');
